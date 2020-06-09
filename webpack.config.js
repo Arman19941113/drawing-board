@@ -72,7 +72,7 @@ module.exports = function (webpackEnv) {
                         options: {
                             cacheDirectory: true,
                             presets: ['@babel/preset-env'],
-                            plugins: ['@babel/plugin-transform-runtime'],
+                            plugins: ['@babel/plugin-transform-runtime', ['component', { 'libraryName': 'arman-ui' }]],
                         },
                     },
                 },

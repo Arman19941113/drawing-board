@@ -7,6 +7,8 @@
         "build": "rm -rf build && node scripts/build.js"
     },
     "dependencies": {
+        "arman-ui": "2.1.9",
+        "throttle-and-debounce": "0.0.2",
         "vue": "3.0.0-beta.14"
     },
     "devDependencies": {
@@ -15,6 +17,7 @@
         "@babel/preset-env": "7.9.6",
         "@vue/compiler-sfc": "3.0.0-beta.14",
         "babel-loader": "8.1.0",
+        "babel-plugin-component": "1.1.1",
         "chalk": "3.0.0",
         "css-loader": "3.2.1",
         "cssnano": "4.1.10",
