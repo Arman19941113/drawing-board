@@ -116,49 +116,46 @@ export default function useCanvas (myCanvasRef) {
     }
 
     const play = () => {
-        let array = stack.reduce((reducer, value) => {
-            return reducer.concat(value)
-        })
-        let maxLength = array.length
-        let length = 2
-        let draw = () => {
+        const taskList = stack.flat()
+        const totalStep = taskList.length
+        let currentStep = 0
+
+        const animate = () => {
+            currentStep += 1
             clearRect()
-            if (length <= maxLength) {
-                for (let i = 0; i < length; i++) {
-                    let value = array[i]
-                    if (value.width) {
-                        myCanvasCtx.lineWidth = value.width
-                        myCanvasCtx.strokeStyle = value.style
+            for (let i = 0; i < currentStep; i++) {
+                const currentDot = taskList[i]
+                if (currentDot.width) {
+                    console.log(currentDot.style)
+                    myCanvasCtx.lineWidth = currentDot.width
+                    myCanvasCtx.strokeStyle = currentDot.color
+                } else {
+                    const lastDot = taskList[i - 1], nextDot = taskList[i + 1]
+                    if (lastDot.width) {
+                        // 当前点为该路径起点
+                        myCanvasCtx.beginPath()
+                        myCanvasCtx.moveTo(currentDot.x, currentDot.y)
+                        myCanvasCtx.lineTo(currentDot.x, currentDot.y)
                     } else {
-                        if (array[i - 1].width) {
-                            // 第一个点
-                            myCanvasCtx.beginPath()
-                            myCanvasCtx.moveTo(value.x, value.y)
-                            myCanvasCtx.lineTo(value.x, value.y)
-                        } else {
-                            let x1 = array[i - 1].x, y1 = array[i - 1].y, x2 = value.x, y2 = value.y
-                            let x3 = x1 / 2 + x2 / 2, y3 = y1 / 2 + y2 / 2
-                            myCanvasCtx.quadraticCurveTo(x1, y1, x3, y3)
-                        }
-                        if ((i === length - 1) || array[i + 1].width) {
-                            // 最后一个点
-                            myCanvasCtx.lineTo(value.x, value.y)
-                            myCanvasCtx.stroke()
-                        }
+                        let x1 = lastDot.x, y1 = lastDot.y, x2 = currentDot.x, y2 = currentDot.y
+                        let x3 = x1 / 2 + x2 / 2, y3 = y1 / 2 + y2 / 2
+                        myCanvasCtx.quadraticCurveTo(x1, y1, x3, y3)
+                    }
+                    if ((i === currentStep - 1) || nextDot.width) {
+                        // 当前点为该路径终点
+                        myCanvasCtx.lineTo(currentDot.x, currentDot.y)
+                        myCanvasCtx.stroke()
                     }
                 }
             }
-            length += 1
-            if (length > maxLength) {
-                return
-            }
-            if (isDrawing) {
-                drawLine()
-                return
-            }
-            requestAnimationFrame(draw)
+
+            // 动画打断
+            if (isDrawing) return drawLine()
+
+            if (currentStep < totalStep) requestAnimationFrame(animate)
         }
-        requestAnimationFrame(draw)
+
+        if (totalStep) requestAnimationFrame(animate)
     }
 
     const downloadPng = () => {
