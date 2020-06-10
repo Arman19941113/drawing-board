@@ -4,7 +4,7 @@
     "private": true,
     "scripts": {
         "start": "node scripts/start.js",
-        "build": "rm -rf build && node scripts/build.js"
+        "build": "rm -rf web && node scripts/build.js"
     },
     "dependencies": {
         "arman-ui": "2.1.9",

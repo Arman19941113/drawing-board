@@ -9,7 +9,7 @@ module.exports = function (webpackEnv) {
     } else if (webpackEnv === 'production') {
         return {
             outputPath: path.resolve('web'),
-            publicPath: '/',
+            publicPath: '/drawing-board/web/',
             useSourceMap: false,
         }
     }
