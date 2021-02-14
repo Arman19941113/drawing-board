@@ -1,47 +1,48 @@
 <template>
-    <canvas id="myCanvas" ref="myCanvasRef" @mousedown="handleMousedown" @touchstart="handleTouchstart" />
-    <Sidebar
-        v-model:lineWidth="lineWidth"
-        v-model:strokeColor="strokeColor"
-        @revoke="revoke"
-        @clear="clear"
-        @play="play"
-        @download="downloadPng" />
+  <canvas id="myCanvas" ref="myCanvasRef" @mousedown="handleMousedown" @touchstart="handleTouchstart" />
+  <Toolbar
+    v-model:lineWidth="lineWidth"
+    v-model:strokeColor="strokeColor"
+    @revoke="revokeStep"
+    @clear="clearBoard"
+    @play="playAnimation"
+    @download="downloadPng" />
 </template>
 
 <script>
-    import { ref } from 'vue'
-    import useCanvas from '@/useCanvas'
-    import Sidebar from './Sidebar.vue'
+  import { ref } from 'vue'
+  import Toolbar from '@/Toolbar.vue'
+  import useDrawing from '@/useDrawing'
 
-    export default {
-        components: { Sidebar },
-        setup () {
-            const myCanvasRef = ref(null)
+  export default {
+    components: { Toolbar },
+    setup() {
+      const myCanvasRef = ref(null)
 
-            const {
-                lineWidth, strokeColor,
-                handleMousedown, handleTouchstart,
-                revoke, clear, downloadPng, play,
-            } = useCanvas(myCanvasRef)
+      const {
+        lineWidth, strokeColor,
+        handleMousedown, handleTouchstart,
+        revokeStep, clearBoard, downloadPng, playAnimation,
+      } = useDrawing(myCanvasRef)
 
-            return {
-                lineWidth, strokeColor,
-                myCanvasRef, handleMousedown, handleTouchstart,
-                revoke, clear, downloadPng, play,
-            }
-        },
-    }
+      return {
+        myCanvasRef,
+        lineWidth, strokeColor,
+        handleMousedown, handleTouchstart,
+        revokeStep, clearBoard, downloadPng, playAnimation,
+      }
+    },
+  }
 
 </script>
 
 <style>
-    @import "~@/css/reset.css";
-    body {
-        position: relative;
-        overflow: hidden;
-        #myCanvas {
-            cursor: crosshair;
-        }
+  @import "~@/css/reset.css";
+  body {
+    position: relative;
+    overflow: hidden;
+    #myCanvas {
+      cursor: crosshair;
     }
+  }
 </style>
