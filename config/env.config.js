@@ -7,7 +7,7 @@ module.exports = function (webpackEnv) {
     }
   } else if (webpackEnv === 'production') {
     return {
-      publicPath: '/',
+      publicPath: '/drawing-board/web-dist/',
       devtool: false,
     }
   }
