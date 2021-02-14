@@ -1,40 +1,54 @@
 {
     "name": "drawing-board",
     "version": "0.0.1",
-    "private": true,
+    "description": "drawing-board based on canvas",
+    "keywords": [
+        "drawing-board",
+        "canvas"
+    ],
     "scripts": {
         "start": "node scripts/start.js",
-        "build": "rm -rf web && node scripts/build.js"
+        "build": "node scripts/build.js",
+        "serve": "node web-server/server.js"
     },
+    "repository": "https://github.com/Arman19941113/drawing-board",
+    "homepage": "https://github.com/Arman19941113/drawing-board#readme",
+    "bugs": {
+        "url": "https://github.com/Arman19941113/drawing-board/issues",
+        "email": "td19941113@gmail.com"
+    },
+    "author": "Arman19941113",
+    "license": "MIT",
     "dependencies": {
-        "arman-ui": "2.1.9",
+        "arman-ui": "2.2.1",
         "throttle-and-debounce": "0.0.2",
-        "vue": "3.0.0-beta.14"
+        "vue": "^3.0.5"
     },
     "devDependencies": {
-        "@babel/core": "7.9.6",
-        "@babel/plugin-transform-runtime": "7.9.6",
-        "@babel/preset-env": "7.9.6",
-        "@vue/compiler-sfc": "3.0.0-beta.14",
-        "babel-loader": "8.1.0",
-        "babel-plugin-component": "1.1.1",
-        "chalk": "3.0.0",
-        "css-loader": "3.2.1",
-        "cssnano": "4.1.10",
-        "file-loader": "6.0.0",
-        "html-webpack-plugin": "3.2.0",
-        "mini-css-extract-plugin": "0.8.0",
-        "postcss-import": "12.0.1",
-        "postcss-import-webpack-resolver": "1.0.1",
-        "postcss-loader": "3.0.0",
-        "postcss-mixins": "6.2.3",
-        "precss": "4.0.0",
-        "style-loader": "1.1.2",
-        "url-loader": "4.1.0",
-        "vue-loader": "16.0.0-beta.3",
-        "vue-template-compiler": "2.6.11",
-        "webpack": "4.41.2",
-        "webpack-cli": "3.3.10 ",
-        "webpack-dev-server": "3.10.1"
+        "@babel/core": "^7.12.13",
+        "@babel/plugin-transform-runtime": "^7.12.15",
+        "@babel/preset-env": "^7.12.13",
+        "@vue/compiler-sfc": "^3.0.5",
+        "babel-loader": "^8.2.2",
+        "babel-plugin-component": "^1.1.1",
+        "chalk": "^4.1.0",
+        "css-loader": "^5.0.2",
+        "cssnano": "^4.1.10",
+        "file-loader": "^6.2.0",
+        "html-webpack-plugin": "^5.0.0",
+        "mini-css-extract-plugin": "^1.3.6",
+        "postcss": "^8.2.5",
+        "postcss-import": "^14.0.0",
+        "postcss-import-webpack-resolver": "^1.0.1",
+        "postcss-loader": "^5.0.0",
+        "postcss-mixins": "^7.0.2",
+        "precss": "^4.0.0",
+        "style-loader": "^2.0.0",
+        "url-loader": "^4.1.1",
+        "vue-loader": "^16.1.2",
+        "vue-template-compiler": "^2.6.12",
+        "webpack": "^5.21.2",
+        "webpack-cli": "^4.5.0",
+        "webpack-dev-server": "^3.11.2"
     }
 }
